@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>test</title>
+</head>
+<style>
+.selected{
+  color: blue;
+  background-color: yellow;
+  cursor: pointer;
+}
+.item{
+    cursor: pointer;
+}
+</style>
+<body>
+    <h1 > closure test </h1>
+    <h1 id="count"></h1>
+    <ul>
+        <li class="item">laptop</li>
+        <li class="item">mob</li>
+        <li class="item">bus</li>
+        <li class="item">car</li>
+    </ul>
+    <script>
+        let product=document.getElementsByClassName('item')
+        let cartCount=(function (){
+            let count=0
+            return {
+                increment:()=>count+=1,
+                decrement:()=>count-=1,
+                totalCount:()=>count
+            }
+        })()
+        function updateCart(){
+            document.getElementById('count').innerHTML=cartCount.totalCount()
+        }
+        for(let i=0;i<=product.length;i++){
+            product[i].addEventListener('click',function(){
+                if(this.className.indexOf(' selected')<0){
+                    this.className+=' selected'
+                    cartCount.increment()
+                    updateCart()
+                }
+                else{
+                    this.className=this.className.replace('selected',"")
+                    cartCount.decrement()
+                    updateCart()
+                }
+            })
+        }
+    </script>
+</body>
+</html>
+
