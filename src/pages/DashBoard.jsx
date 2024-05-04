@@ -1,6 +1,12 @@
 import { Box, styled } from '@mui/material';
-import React from 'react'
-import DashboardDrawer from '../components/Drawer';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { store } from '../redux/store';
+import { getData } from '../redux/data/action';
+import { Bar, Line } from 'react-chartjs-2';
+import { CategoryScale, Chart } from "chart.js";
+
+Chart.register(CategoryScale);
 
 const Outer = styled(Box)(({ theme }) => ({
     border:"2px solid red",
@@ -31,6 +37,16 @@ const MainDiv = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("xs")]: {},
 }));
 function DashBoard() {
+  const dispatch=useDispatch()
+  const mainData=useSelector((store)=>store.data.dataGet)
+
+  console.log("mainn",mainData)
+
+
+  useEffect(()=>{
+    dispatch(getData())
+  },[])
+
   return (
     <Outer>
     <InnerDiv>
@@ -38,6 +54,9 @@ function DashBoard() {
     </InnerDiv>
 
     <MainDiv>
+
+     <MainDiv></MainDiv>
+     
 
     </MainDiv>
 
