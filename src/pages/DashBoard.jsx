@@ -41,6 +41,7 @@ function DashBoard() {
   const mainData=useSelector((store)=>store.data.dataGet)
 
   console.log("mainn",mainData)
+  console.log("object")
 
 
   useEffect(()=>{
