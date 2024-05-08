@@ -33,6 +33,7 @@ const Inner = styled(Box)(({ theme }) => ({
 }));
 const TextBox = styled(Typography)(({ theme }) => ({
     fontWeight:600,
+    color:"white",
     cursor:"pointer",
   [theme.breakpoints.down("xl")]: {},
   [theme.breakpoints.down("lg")]: {},
