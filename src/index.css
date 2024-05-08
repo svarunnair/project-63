@@ -42,3 +42,15 @@ code {
   align-items: center;
   flex-direction: column;
 }
+
+@media (max-Width:500px) {
+  .text{
+    color: brown;
+  }
+}
+@media(max-Width:300px){
+  .text{
+    color:yellow
+  }
+}
+

@@ -2,7 +2,7 @@
 const page=document.getElementById("page")
 const btn=document.getElementById('btn')
 
-console.log("object",page.textContent)
+
 
 btn.addEventListener("click",function(){
     if(page.textContent==="Home Page"){
@@ -10,9 +10,16 @@ btn.addEventListener("click",function(){
     }
      else{
         page.textContent="Home Page"
-     }
-        
-    
-    
+     } 
+})
+const submit=document.getElementById("submit")
+const inputElement=document.getElementById("input")
+
+console.log("inpp..",inputElement)
+console.log("submit..",submit)
+
+submit.addEventListener("click",function(){
+   const output= inputElement.value
+   console.log("out",output)
 })
 
