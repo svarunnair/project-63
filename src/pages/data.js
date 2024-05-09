@@ -59,17 +59,17 @@ testPromise.then((res)=>{
     console.log("err",err)
 })
 
-// const testAsyncAwait = async () => {
-//     try {
-//         let value = 1;
-//         if (value < 4) {
-//             return 'value is less than 4';
-//         } else {
-//             throw 'value is greater than 4';
-//         }
-//     } catch (error) {
-//         throw error;
-//     }
-// }
+const testAsyncAwait = async () => {
+    try {
+        let value = 1;
+        if (value < 4) {
+            return 'value is less than 4';
+        } else {
+            throw 'value is greater than 4';
+        }
+    } catch (error) {
+        throw error;
+    }
+}
 
-// console.log(">>?",testAsyncAwait())
+console.log(">>?",testAsyncAwait())
