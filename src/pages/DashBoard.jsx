@@ -1,4 +1,4 @@
-import { Box, Typography, styled } from '@mui/material';
+import { Box, Button, Tooltip, Typography, styled } from '@mui/material';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { store } from '../redux/store';
@@ -49,6 +49,30 @@ const ImageBox = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {},
   [theme.breakpoints.down("xs")]: {},
 }));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  position: "relative",
+  "&::after": {
+    content: "'Tooltip content'",
+    position: "absolute",
+    top: "100%",
+    left: "50%",
+    transform: "translateX(-50%)",
+    padding: "4px 8px",
+    borderRadius: "4px",
+    backgroundColor: "rgba(0, 0, 0, 0.75)",
+    color: "#ffffff",
+    fontSize: "12px",
+    textAlign: "center",
+    visibility: "hidden",
+    opacity: 0,
+    transition: "visibility 0s, opacity 0.3s linear",
+  },
+  "&:hover::after": {
+    visibility: "visible",
+    opacity: .5,
+  },
+}));
 function DashBoard() {
   const dispatch=useDispatch()
   const mainData=useSelector((store)=>store.data.dataGet)
@@ -68,7 +92,14 @@ function DashBoard() {
 
     <MainDiv>
   <TextBox>Welcomeeeeeeeeeeeeee</TextBox>
+
     </MainDiv>
+  <Tooltip title="Button Tooltip" arrow>
+        <Button>Done</Button>
+      </Tooltip>
+
+      <StyledButton sx={{paddingTop:10}}>Done</StyledButton>
+     
 
     </Outer>
   )
