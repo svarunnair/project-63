@@ -1,5 +1,5 @@
 import { Box, Button, Tooltip, Typography, styled } from '@mui/material';
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { store } from '../redux/store';
 import { getData } from '../redux/data/action';
@@ -76,14 +76,22 @@ const StyledButton = styled(Button)(({ theme }) => ({
 function DashBoard() {
   const dispatch=useDispatch()
   const mainData=useSelector((store)=>store.data.dataGet)
+  const [data,setData]=useState({a:"b"})
 
-  console.log("mainn",mainData)
-  console.log("object")
+  console.log("data??",data)
+
+const handlechange=()=>{
+  const main={...data,U:"ooo"}
+  setData(main)
+}
 
 
-  useEffect(()=>{
-    dispatch(getData())
-  },[])
+ const updateData = useCallback(() => {
+    console.log("data??", data);
+    const main = { ...data, b: "v" };
+    console.log("Main", main);
+    setData(main);
+  }, [data]); 
 
   return (
     <Outer>
@@ -95,10 +103,11 @@ function DashBoard() {
 
     </MainDiv>
   <Tooltip title="Button Tooltip" arrow>
-        <Button>Done</Button>
+        <Button onClick={updateData}>Done</Button>
+        
       </Tooltip>
 
-      <StyledButton sx={{paddingTop:10}}>Done</StyledButton>
+      <StyledButton onClick={handlechange} sx={{paddingTop:10}}>Done</StyledButton>
      
 
     </Outer>
