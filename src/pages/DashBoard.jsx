@@ -80,6 +80,8 @@ function DashBoard() {
 
   console.log("data??",data)
 
+  console.log("object")
+
 const handlechange=()=>{
   const main={...data,U:"ooo"}
   setData(main)
