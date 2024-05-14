@@ -1,47 +1,47 @@
+import React, { useState } from 'react';
 
-import React, { useState } from 'react'
-
-const data=[
-    {name:"varun",isSlected:false},
-    {name:"arun",isSlected:false},
-    {name:"anu",isSlected:false},
-    {name:"aju",isSlected:false},
-    {name:"kiran",isSlected:false},
-]
+const initialData = [
+    { name: "varun", isSelected: false },
+    { name: "arun", isSelected: false },
+    { name: "anu", isSelected: false },
+    { name: "aju", isSelected: false },
+    { name: "kiran", isSelected: false },
+];
 
 function Test() {
+    const [data, setData] = useState(initialData); 
+    const [selectAll, setSelectAll] = useState(false);
 
-    const [isSlected,setIsSelect]=useState(false)
-    const [selectAll,setSelectAll]=useState(false)
+    const handleChange = (index) => {
+        const newData = [...data];
+        newData[index].isSelected = !newData[index].isSelected;
+        setData(newData);
+        setSelectAll(newData.every(item => item.isSelected));
+    };
 
-    const handleChange=(e)=>{
-        if(isSlected){
-            
-        }
-    }
+    const handleSelectAll = () => {
+        const newValue = !selectAll;
+        const newData = data.map(item => ({...item, isSelected: newValue }));
+        setData(newData);
+        setSelectAll(newValue);
+    };
 
-
-    const handleSelect=()=>{
-       
-    }
-  return (
-    <div>
-    <div style={{display:"flex"}}>
-   <text>Select all</text>
-   <input type='checkbox' checked={selectAll} onChange={handleSelect}/>
-   </div> 
-        {data.map((item,index)=>(
-            <div key={index} style={{border:"2px solid red",width:"40%"}}>
-            <div style={{padding:10,}}>
-                <text>{item.name}</text>
- 
-                <input type='checkbox' checked={item.isSlected} onChange={()=>handleChange(index)} />
-                
-                </div>
+    return (
+        <div>
+            <div style={{ display: "flex" }}>
+                <span>Select all</span>
+                <input type='checkbox' checked={selectAll} onChange={handleSelectAll} />
             </div>
-        ))}
-    </div>
-  )
+            {data.map((item, index) => (
+                <div key={index} style={{ border: "2px solid red", width: "40%" }}>
+                    <div style={{ padding: 10 }}>
+                        <span>{item.name}</span>
+                        <input type='checkbox' checked={item.isSelected} onChange={() => handleChange(index)} />
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
 }
 
-export default Test
+export default Test;
