@@ -14,36 +14,54 @@ function Box() {
 
     console.log("data",data)
 
-    const handleSelect=(index)=>{
-        const newData= [...data]
-        newData[index].isSelected=!newData[index].isSelected
-        setData(newData)
-        setSelectAll(data.every((item)=>item.isSelected))
-    }
+   const handleSelect=(index)=>{
+    const newData=[...data]
+    newData[index].isSelected=!newData[index].isSelected
+    setData(newData)
+    setSelectAll(data.every((item)=>item.isSelected))
+   }
 
-    const handleSelectAll=()=>{
-       setSelectAll(!selectAll)
-       setData(data.map((item)=>{return {...item, isSelected:!selectAll}}))
-    }
+   const handleSelectAll=()=>{
+    setSelectAll(!selectAll)
+    setData(data.map((item)=>{return {...item, isSelected:!selectAll}}))
+   }
 
 
-   console.log(square(4)); // TypeError: square is not a function
+//   const multiply=(n,cb)=>{
+//     return setTimeout(()=>{
+//        cb(n*2)
+//     },1000)
+   
+// }
 
-// Function expression
-function square(x) {
-  return x * x;
+//   const first=(n)=>{
+//     return multiply(n,(res)=>{console.log("newRES",res)})
+//   }
+
+//  console.log("result//.....",first(5))
+
+const multi=(num)=>{
+    const promise= new Promise((resolve,rej)=>{
+        return setTimeout(()=>{
+            resolve(num+2)
+        },1000)
+    })
+    return promise
 }
 
-const multi=(x)=>{
-    return x+x
+const keep=(num)=>{
+
+multi(num)
+.then((res1)=>multi(res1))
+.then((res2)=>multi(res2))
+.then((res3)=>multi(res3))
+.then((res4)=>console.log("eeeeeeeeee//",res4))
+
 }
-console.log("mul../",multi(5))
+
+keep(2)
 
 
-
-    const name="vvaafvvvvvv"
-    let res=[...new Set(name)]
-    console.log("res",res)
    
     
   return (
