@@ -14,21 +14,37 @@ function Box() {
 
     console.log("data",data)
 
-    const handleSelect=(i)=>{
-        const newData=[...data]
-        newData[i].isSelected=!newData[i].isSelected
+    const handleSelect=(index)=>{
+        const newData= [...data]
+        newData[index].isSelected=!newData[index].isSelected
         setData(newData)
         setSelectAll(data.every((item)=>item.isSelected))
     }
 
     const handleSelectAll=()=>{
-        const value=!selectAll
-        const newValue=data.map((item)=>{
-            return {...item,isSelected:value}
-        })
-        setData(newValue)
-        setSelectAll(value)
+       setSelectAll(!selectAll)
+       setData(data.map((item)=>{return {...item, isSelected:!selectAll}}))
     }
+
+
+   console.log(square(4)); // TypeError: square is not a function
+
+// Function expression
+function square(x) {
+  return x * x;
+}
+
+const multi=(x)=>{
+    return x+x
+}
+console.log("mul../",multi(5))
+
+
+
+    const name="vvaafvvvvvv"
+    let res=[...new Set(name)]
+    console.log("res",res)
+   
     
   return (
     <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center"}}>
